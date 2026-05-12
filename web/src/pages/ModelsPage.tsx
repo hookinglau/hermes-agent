@@ -575,7 +575,7 @@ function AuxiliaryTasksModal({
           })}
         </div>
 
-        {picker && (
+        {picker && picker.kind === "aux" && (
           <ModelPickerDialog
             key={`picker-${refreshKey}`}
             loader={api.getModelOptions}
@@ -587,7 +587,7 @@ function AuxiliaryTasksModal({
             onApply={async ({ provider, model }) => {
               await api.setModelAssignment({
                 scope: "auxiliary",
-                task: picker.kind === "main" ? "" : picker.task,
+                task: picker.task,
                 provider,
                 model,
               });
